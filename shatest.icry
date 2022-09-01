@@ -1,0 +1,3 @@
+:load shatest.cry
+:readByteArray random.dat
+sha384 it
