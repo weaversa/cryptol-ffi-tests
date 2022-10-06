@@ -1,0 +1,4 @@
+module shatest_8 = shatest_param where
+
+type a = 8
+
