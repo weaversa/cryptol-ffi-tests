@@ -1,0 +1,5 @@
+module shatest where
+
+foreign sha384 : {a, b} (fin a, fin b, b == 384/8) => [a][8] -> [b][8]
+
+foreign sha256 : {a, b} (fin a, fin b, b == 256/8) => [a][8] -> [b][8]

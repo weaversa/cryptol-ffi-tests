@@ -1,5 +1,50 @@
 module shatest where
 
-foreign sha384 : {a, b} (fin a, fin b, b == 384/8) => [a][8] -> [b][8]
+parameter
 
-foreign sha256 : {a, b} (fin a, fin b, b == 256/8) => [a][8] -> [b][8]
+  type a : #
+  type constraint (fin a)
+
+//foreign sha384 : {b} (fin b, b == 384/8) => [a][8] -> [b][8]
+
+/*
+shatest_8> sha384 "12345678"
+cryptol-osx: You have encountered a bug in Cryptol's implementation.
+*** Please create an issue at https://github.com/GaloisInc/cryptol/issues
+
+%< --------------------------------------------------- 
+  Revision:  e261894654ceb3736f8de4a671f4cafc38ed6eba
+  Branch:    master (uncommited files present)
+  Location:  [Eval] evalType
+  Message:   type variable not bound
+             TVBound (TParam {tpUnique = 4669, tpKind = KNum, tpFlav = TPModParam (Name {nUnique = 4669, nInfo = Declared (TopModule (ModName "shatest")) UserName, nNamespace = NSType, nIdent = Ident False "a", nFixity = Nothing, nLoc = Range {from = Position {line = 5, col = 8}, to = Position {line = 5, col = 9}, source = "./shatest.cry"}}), tpInfo = TVarInfo {tvarSource = Range {from = Position {line = 5, col = 8}, to = Position {line = 5, col = 9}, source = "./shatest.cry"}, tvarDesc = TVFromModParam (Name {nUnique = 4669, nInfo = Declared (TopModule (ModName "shatest")) UserName, nNamespace = NSType, nIdent = Ident False "a", nFixity = Nothing, nLoc = Range {from = Position {line = 5, col = 8}, to = Position {line = 5, col = 9}, source = "./shatest.cry"}})}})
+CallStack (from HasCallStack):
+  panic, called at src/Cryptol/Utils/Panic.hs:21:9 in cryptol-2.13.0.99-inplace:Cryptol.Utils.Panic
+  panic, called at src/Cryptol/Backend/Monad.hs:410:17 in cryptol-2.13.0.99-inplace:Cryptol.Backend.Monad
+  evalPanic, called at src/Cryptol/Eval/Type.hs:130:20 in cryptol-2.13.0.99-inplace:Cryptol.Eval.Type
+%< --------------------------------------------------- 
+*/
+
+//foreign sha384 : {tmp, b} (tmp == a, fin b, b == 384/8) => [a][8] -> [b][8]
+
+/*
+shatest_8> sha384 "12345678"
+cryptol-osx: You have encountered a bug in Cryptol's implementation.
+*** Please create an issue at https://github.com/GaloisInc/cryptol/issues
+
+%< ---------------------------------------------------
+  Revision:  e261894654ceb3736f8de4a671f4cafc38ed6eba
+  Branch:    master (uncommited files present)
+  Location:  [Eval] evalType
+  Message:   type variable not bound
+             TVBound (TParam {tpUnique = 4669, tpKind = KNum, tpFlav = TPModParam (Name {nUnique = 4669, nInfo = Declared (TopModule (ModName "shatest")) UserName, nNamespace = NSType, nIdent = Ident False "a", nFixity = Nothing, nLoc = Range {from = Position {line = 5, col = 8}, to = Position {line = 5, col = 9}, source = "./shatest.cry"}}), tpInfo = TVarInfo {tvarSource = Range {from = Position {line = 5, col = 8}, to = Position {line = 5, col = 9}, source = "./shatest.cry"}, tvarDesc = TVFromModParam (Name {nUnique = 4669, nInfo = Declared (TopModule (ModName "shatest")) UserName, nNamespace = NSType, nIdent = Ident False "a", nFixity = Nothing, nLoc = Range {from = Position {line = 5, col = 8}, to = Position {line = 5, col = 9}, source = "./shatest.cry"}})}})
+CallStack (from HasCallStack):
+  panic, called at src/Cryptol/Utils/Panic.hs:21:9 in cryptol-2.13.0.99-inplace:Cryptol.Utils.Panic
+  panic, called at src/Cryptol/Backend/Monad.hs:410:17 in cryptol-2.13.0.99-inplace:Cryptol.Backend.Monad
+  evalPanic, called at src/Cryptol/Eval/Type.hs:130:20 in cryptol-2.13.0.99-inplace:Cryptol.Eval.Type
+%< ---------------------------------------------------
+*/
+
+foreign sha384 : {tmp, b} (tmp == a, fin b, b == 384/8) => [tmp][8] -> [b][8]
+
+foreign sha256 : {tmp, b} (tmp == a, fin b, b == 256/8) => [tmp][8] -> [b][8]

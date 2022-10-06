@@ -1,4 +1,4 @@
-module shatest_8 = shatest_param where
+module shatest_8 = shatest where
 
 type a = 8
 
